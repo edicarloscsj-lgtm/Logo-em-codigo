@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="pt-BR" class="dark scroll-smooth">
 <head>
@@ -5,19 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     
     <!-- SEO Meta Tags -->
-    <title>LogoEmCodigo.com.br — Converta sua Logo em Código HTML e Base64</title>
-    <meta name="description" content="Ferramenta gratuita para converter imagens e logos em código HTML (Base64), gerar links de WhatsApp, criar ícones sociais SVG e limpar URLs para seu biosite.">
-    <meta name="keywords" content="logo em html, imagem para base64, gerador link whatsapp, svg redes sociais, biosite, linktree código">
-    <meta name="author" content="LogoEmCodigo">
+    <title>LogoEmCodigo.com.br — Converta Logo em HTML, Base64 e Crie Biosites</title>
+    <meta name="description" content="Ferramenta gratuita para converter imagens em código HTML (Base64), gerar links de WhatsApp, criar ícones sociais SVG e montar seu biosite HTML em segundos.">
+    <meta name="keywords" content="logo em html, imagem para base64, criador de biosite html, gerador link whatsapp, svg redes sociais, linktree código">
     
-    <!-- Open Graph / Redes Sociais -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://www.logoemcodigo.com.br/">
-    <meta property="og:title" content="LogoEmCodigo — Ferramentas para Biosites">
-    <meta property="og:description" content="Converta sua logo para HTML, crie links de WhatsApp e ícones em SVG. 100% grátis e sem cadastro.">
-    <meta property="og:image" content="https://www.logoemcodigo.com.br/logo.png">
-
-    <!-- Tailwind CSS CDN -->
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -32,9 +25,6 @@
                             card: '#131D31',
                             border: '#1E293B'
                         }
-                    },
-                    animation: {
-                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
                     }
                 }
             }
@@ -45,502 +35,473 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
     
     <style>
-        body { 
-            font-family: 'Inter', sans-serif; 
-            -webkit-tap-highlight-color: transparent;
-        }
+        body { font-family: 'Inter', sans-serif; -webkit-tap-highlight-color: transparent; }
         .code-font { font-family: 'Fira Code', monospace; }
         .gradient-text {
             background: linear-gradient(135deg, #00B4DB 0%, #0083B0 50%, #FFB800 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
-        /* Custom Scrollbar */
         ::-webkit-scrollbar { width: 8px; height: 8px; }
         ::-webkit-scrollbar-track { background: #0B0F19; }
         ::-webkit-scrollbar-thumb { background: #1E293B; border-radius: 4px; }
         ::-webkit-scrollbar-thumb:hover { background: #00B4DB; }
     </style>
 </head>
-<body class="bg-brand-dark text-slate-100 min-h-screen flex flex-col selection:bg-brand-blue selection:text-brand-dark">
+<body class="bg-brand-dark text-slate-100 min-h-screen flex flex-col">
 
     <header class="border-b border-brand-border bg-brand-dark/90 backdrop-blur-md sticky top-0 z-40 w-full">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
             <a href="#" onclick="switchTab('logo')" class="flex items-center gap-3 group">
-                <div class="w-10 h-10 rounded-xl overflow-hidden shadow-lg shadow-brand-blue/20 bg-slate-900 border border-brand-border flex items-center justify-center transition-transform group-hover:scale-105">
-                    <!-- LOGO PUXANDO DIRETO DO GITHUB -->
+                <div class="w-10 h-10 rounded-xl overflow-hidden bg-slate-900 border border-brand-border flex items-center justify-center">
+                    <!-- Loading logo.png from your GitHub repo -->
                     <img src="logo.png" alt="LogoEmCodigo" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/100x100/00B4DB/FFFFFF?text=LC'">
                 </div>
                 <div>
                     <span class="text-lg font-extrabold tracking-tight hidden sm:block">Logo<span class="text-brand-blue">Em</span><span class="text-brand-yellow">Codigo</span></span>
-                    <span class="hidden sm:block text-[10px] text-slate-400 font-mono tracking-widest uppercase -mt-1">.com.br</span>
                 </div>
             </a>
             
-            <nav class="flex items-center space-x-1 sm:space-x-4 text-xs sm:text-sm font-medium text-slate-300 overflow-x-auto no-scrollbar">
-                <button onclick="switchTab('logo')" id="nav-logo" class="text-brand-blue font-semibold px-2 py-1 whitespace-nowrap transition-colors">Conversor</button>
-                <button onclick="switchTab('whatsapp')" id="nav-whatsapp" class="hover:text-brand-blue px-2 py-1 whitespace-nowrap transition-colors">WhatsApp</button>
-                <button onclick="switchTab('social')" id="nav-social" class="hover:text-brand-blue px-2 py-1 whitespace-nowrap transition-colors">Ícones</button>
-                <span class="hidden md:inline-block px-3 py-1 rounded-full bg-cyan-500/10 text-brand-blue text-xs border border-cyan-500/20 ml-2">✨ 100% Grátis</span>
+            <nav class="flex items-center space-x-1 sm:space-x-4 text-xs font-medium text-slate-300 overflow-x-auto no-scrollbar py-2">
+                <button onclick="switchTab('logo')" id="nav-logo" class="text-brand-blue font-semibold px-2 whitespace-nowrap transition-colors">Conversor</button>
+                <button onclick="switchTab('biosite')" id="nav-biosite" class="hover:text-brand-blue px-2 whitespace-nowrap transition-colors">Criar Biosite <span class="text-[10px] bg-brand-yellow text-brand-dark px-1.5 rounded-full ml-1 font-bold">NOVO</span></button>
+                <button onclick="switchTab('whatsapp')" id="nav-whatsapp" class="hover:text-brand-blue px-2 whitespace-nowrap transition-colors hidden md:block">WhatsApp</button>
+                <button onclick="switchTab('social')" id="nav-social" class="hover:text-brand-blue px-2 whitespace-nowrap transition-colors hidden md:block">Ícones</button>
+                <button onclick="switchTab('url')" id="nav-url" class="hover:text-brand-blue px-2 whitespace-nowrap transition-colors hidden md:block">Limpador</button>
             </nav>
         </div>
     </header>
 
     <main class="flex-grow w-full">
-        <section class="relative pt-10 pb-12 px-4 sm:px-6 lg:px-8 overflow-hidden w-full">
+        <section class="relative pt-10 pb-12 px-4 sm:px-6 overflow-hidden w-full">
             <div class="absolute inset-0 opacity-10 pointer-events-none bg-[radial-gradient(#00B4DB_1px,transparent_1px)] [background-size:24px_24px]"></div>
             
-            <div class="max-w-4xl mx-auto text-center relative z-10 mb-8 sm:mb-12">
-                <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-card border border-brand-border text-brand-yellow text-[10px] sm:text-xs font-medium mb-4 sm:mb-6 shadow-sm">
-                    <span class="w-2 h-2 rounded-full bg-brand-yellow animate-pulse"></span>
-                    O Canivete Suíço dos Biosites
-                </div>
-                <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight mb-4 px-2">
-                    Ferramentas Rápidas para <span class="gradient-text block sm:inline">Criadores e Negócios</span>
+            <div class="max-w-4xl mx-auto text-center relative z-10 mb-8">
+                <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight mb-4">
+                    Canivete Suíço para <span class="gradient-text block sm:inline">Criadores Livres</span>
                 </h1>
-                <p class="text-sm sm:text-base md:text-lg text-slate-400 max-w-2xl mx-auto px-4">
-                    Tudo que você precisa para turbinar seu Linktree, página de vendas ou site HTML em poucos segundos. Sem cadastros, sem enrolação.
+                <p class="text-sm sm:text-base text-slate-400 max-w-2xl mx-auto px-4">
+                    Converta imagens, crie seu biosite em HTML puro e gere códigos úteis instantaneamente. Sem cadastro, sem banco de dados, 100% no seu navegador.
                 </p>
 
-                <!-- Mobile & Desktop Tab Navigation -->
-                <div class="flex flex-wrap justify-center gap-2 mt-6 sm:mt-8 px-2">
-                    <button onclick="switchTab('logo')" id="btn-tab-logo" class="px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-brand-blue text-brand-dark transition-all shadow-lg shadow-brand-blue/20">Logo em Código</button>
-                    <button onclick="switchTab('whatsapp')" id="btn-tab-whatsapp" class="px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-brand-card border border-brand-border text-slate-300 hover:bg-slate-800 transition-all">Link WhatsApp</button>
-                    <button onclick="switchTab('social')" id="btn-tab-social" class="px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-brand-card border border-brand-border text-slate-300 hover:bg-slate-800 transition-all">Ícones Sociais</button>
-                    <button onclick="switchTab('url')" id="btn-tab-url" class="px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-brand-card border border-brand-border text-slate-300 hover:bg-slate-800 transition-all">Limpador URL</button>
+                <!-- Mobile Tabs Navigation -->
+                <div class="flex flex-wrap justify-center gap-2 mt-6 md:hidden">
+                    <button onclick="switchTab('logo')" id="btn-tab-logo" class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-brand-blue text-brand-dark transition-all">Logo em Código</button>
+                    <button onclick="switchTab('biosite')" id="btn-tab-biosite" class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-brand-card border border-brand-border text-brand-yellow transition-all">Criar Biosite</button>
+                    <button onclick="switchTab('whatsapp')" id="btn-tab-whatsapp" class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-brand-card border border-brand-border text-slate-300 transition-all">WhatsApp</button>
+                    <button onclick="switchTab('social')" id="btn-tab-social" class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-brand-card border border-brand-border text-slate-300 transition-all">Ícones</button>
+                    <button onclick="switchTab('url')" id="btn-tab-url" class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-brand-card border border-brand-border text-slate-300 transition-all">URLs</button>
                 </div>
             </div>
 
             <div id="ferramentas-container" class="max-w-4xl mx-auto relative z-10 w-full">
                 
-                <!-- TAB 1: LOGO EM CÓDIGO -->
+                <!-- TAB 1: LOGO EM CÓDIGO (CORE) -->
                 <div id="tool-logo" class="tool-content bg-brand-card border border-brand-border rounded-2xl p-5 sm:p-8 shadow-2xl w-full">
                     
-                    <!-- Dropzone -->
-                    <div id="dropzone" class="border-2 border-dashed border-slate-700 hover:border-brand-blue rounded-xl p-6 sm:p-12 text-center cursor-pointer transition-all duration-300 bg-slate-900/50 hover:bg-slate-900/80 group">
-                        <input type="file" id="fileInput" accept="image/png, image/jpeg, image/svg+xml, image/webp, image/gif" class="hidden">
-                        <div class="w-16 h-16 rounded-2xl bg-brand-blue/10 text-brand-blue mx-auto flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
-                            </svg>
+                    <!-- Dropzone Container -->
+                    <div id="dropzone" class="border-2 border-dashed border-slate-600 hover:border-brand-blue rounded-xl p-8 sm:p-12 text-center cursor-pointer transition-all duration-300 bg-slate-900/50 group">
+                        <input type="file" id="fileInput" accept="image/png, image/jpeg, image/svg+xml, image/webp" class="hidden">
+                        <div class="w-14 h-14 rounded-2xl bg-brand-blue/10 text-brand-blue mx-auto flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+                            <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
                         </div>
-                        <h3 class="text-base sm:text-lg font-semibold text-slate-200 mb-2">Arraste sua logo aqui ou <span class="text-brand-blue underline">clique para buscar</span></h3>
-                        <p class="text-xs text-slate-400">Suporta PNG, JPG, SVG, WebP e GIF (Até 5MB)</p>
+                        <h3 class="text-base font-semibold text-slate-200 mb-1">Arraste a logo aqui ou <span class="text-brand-blue underline">clique para buscar</span></h3>
+                        <p class="text-xs text-slate-400">PNG, JPG, SVG, WebP (Até 5MB)</p>
                     </div>
 
                     <!-- Output Section -->
-                    <div id="outputSection" class="hidden mt-4 space-y-6 sm:space-y-8 pt-4 sm:pt-6 border-t border-brand-border animate-fade-in">
+                    <div id="outputSection" class="hidden mt-6 space-y-6 pt-6 border-t border-brand-border animate-fade-in">
                         
-                        <!-- Preview Card -->
-                        <div class="flex flex-col sm:flex-row gap-4 items-center bg-slate-900/80 p-4 sm:p-5 rounded-xl border border-brand-border">
-                            <div class="flex-shrink-0 w-full sm:w-1/3 flex flex-col items-center justify-center p-4 bg-slate-950/80 rounded-lg border border-slate-800">
-                                <img id="imagePreview" src="" alt="Preview" class="max-h-24 sm:max-h-32 object-contain mb-2 w-auto">
-                                <span id="imageMeta" class="text-[10px] sm:text-xs text-slate-400 font-mono break-all text-center"></span>
+                        <div class="flex flex-col sm:flex-row gap-4 items-center bg-slate-900/80 p-4 rounded-xl border border-brand-border">
+                            <div class="flex-shrink-0 w-full sm:w-1/3 flex flex-col items-center p-3 bg-slate-950/80 rounded-lg border border-slate-800">
+                                <img id="imagePreview" src="" alt="Preview" class="max-h-24 object-contain mb-2">
+                                <span id="imageMeta" class="text-[10px] text-slate-400 font-mono text-center"></span>
                             </div>
-                            <div class="w-full sm:w-2/3 space-y-3">
-                                <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider">Cores Extraídas (HEX)</h4>
-                                <div id="colorPalette" class="flex flex-wrap gap-2">
-                                    <!-- Cores geradas via JS entrarão aqui -->
-                                </div>
-                                <p class="text-[10px] text-slate-500">Dica: Clique nos códigos para copiar.</p>
+                            <div class="w-full sm:w-2/3 space-y-2 text-center sm:text-left">
+                                <h4 class="text-xs font-bold text-slate-300">Cores Extraídas:</h4>
+                                <div id="colorPalette" class="flex flex-wrap justify-center sm:justify-start gap-2"></div>
                             </div>
                         </div>
 
-                        <!-- Codes -->
-                        <div class="space-y-5">
-                            <!-- HTML Tag -->
-                            <div class="space-y-2">
-                                <div class="flex items-center justify-between">
-                                    <label class="text-xs sm:text-sm font-semibold text-slate-300 flex items-center gap-2">
-                                        <span class="w-2 h-2 rounded-full bg-brand-blue shadow-[0_0_8px_#00B4DB]"></span> 1. Tag HTML Pronta
-                                    </label>
-                                    <button onclick="copyCode('htmlCode')" class="px-3 py-1.5 bg-brand-blue/10 hover:bg-brand-blue/20 text-brand-blue text-[10px] sm:text-xs font-bold rounded-lg border border-brand-blue/30 transition-colors flex items-center gap-1">
-                                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg> Copiar
-                                    </button>
-                                </div>
-                                <div class="relative group">
-                                    <pre id="htmlCode" class="bg-slate-950 p-3 sm:p-4 rounded-xl text-xs sm:text-sm text-cyan-300 code-font overflow-x-auto border border-slate-800 whitespace-pre-wrap break-all"></pre>
-                                </div>
+                        <!-- HTML Code Block -->
+                        <div class="space-y-2">
+                            <div class="flex items-center justify-between">
+                                <label class="text-xs font-semibold text-slate-300">Tag HTML Pronta</label>
+                                <button onclick="copyElementText('htmlCode')" class="px-3 py-1 bg-brand-blue/10 hover:bg-brand-blue/20 text-brand-blue text-[10px] font-bold rounded border border-brand-blue/30 transition-colors">Copiar HTML</button>
                             </div>
+                            <pre id="htmlCode" class="bg-slate-950 p-3 rounded-xl text-xs text-cyan-300 code-font overflow-x-auto border border-slate-800 whitespace-pre-wrap break-all"></pre>
+                        </div>
 
-                            <!-- Base64 -->
-                            <div class="space-y-2">
-                                <div class="flex items-center justify-between">
-                                    <label class="text-xs sm:text-sm font-semibold text-slate-300 flex items-center gap-2">
-                                        <span class="w-2 h-2 rounded-full bg-brand-yellow shadow-[0_0_8px_#FFB800]"></span> 2. Código Base64 (Sem hospedar)
-                                    </label>
-                                    <button onclick="copyCode('base64Code')" class="px-3 py-1.5 bg-brand-yellow/10 hover:bg-brand-yellow/20 text-brand-yellow text-[10px] sm:text-xs font-bold rounded-lg border border-brand-yellow/30 transition-colors flex items-center gap-1">
-                                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg> Copiar
-                                    </button>
-                                </div>
-                                <div class="relative group">
-                                    <pre id="base64Code" class="bg-slate-950 p-3 sm:p-4 rounded-xl text-[10px] sm:text-xs text-yellow-300/80 code-font overflow-y-auto max-h-32 sm:max-h-40 border border-slate-800 break-all whitespace-pre-wrap"></pre>
-                                </div>
+                        <!-- Base64 Code Block -->
+                        <div class="space-y-2">
+                            <div class="flex items-center justify-between">
+                                <label class="text-xs font-semibold text-slate-300">Código Base64 Puro</label>
+                                <button onclick="copyElementText('base64Code')" class="px-3 py-1 bg-brand-yellow/10 hover:bg-brand-yellow/20 text-brand-yellow text-[10px] font-bold rounded border border-brand-yellow/30 transition-colors">Copiar Base64</button>
                             </div>
+                            <pre id="base64Code" class="bg-slate-950 p-3 rounded-xl text-[10px] text-yellow-300/80 code-font overflow-y-auto max-h-32 border border-slate-800 whitespace-pre-wrap break-all"></pre>
                         </div>
 
                         <div class="text-center pt-2">
-                            <button onclick="resetTool()" class="text-xs sm:text-sm text-slate-400 hover:text-white underline decoration-slate-600 underline-offset-4 transition-colors">Carregar outra imagem</button>
+                            <button onclick="resetTool()" class="text-xs text-slate-400 hover:text-white underline transition-colors">Carregar outra imagem</button>
                         </div>
                     </div>
                 </div>
 
-                <!-- TAB 2: WHATSAPP LINK GENERATOR -->
+                <!-- TAB 2: BIOSITE GENERATOR (NEW) -->
+                <div id="tool-biosite" class="tool-content hidden bg-brand-card border border-brand-border rounded-2xl p-5 sm:p-8 shadow-2xl w-full">
+                    <div class="mb-6 border-b border-slate-800 pb-4">
+                        <h3 class="text-xl font-bold text-slate-100 flex items-center gap-2">
+                            <svg class="w-6 h-6 text-brand-yellow" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
+                            Criador de Biosite HTML
+                        </h3>
+                        <p class="text-xs text-slate-400 mt-1">Gere um código HTML completo de um biosite profissional. É só copiar e hospedar no GitHub Pages, Tiiny.host ou seu servidor, sem depender de Linktree.</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Form Data -->
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-300 mb-1">Seu Nome / Marca</label>
+                                <input type="text" id="bioName" placeholder="Ex: LogoEmCodigo" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-brand-yellow">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-300 mb-1">Breve Descrição (Bio)</label>
+                                <input type="text" id="bioDesc" placeholder="Ferramentas para desenvolvedores" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-brand-yellow">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-300 mb-1">URL da Foto de Perfil (Opcional)</label>
+                                <input type="text" id="bioPic" placeholder="https://exemplo.com/foto.jpg" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-brand-yellow">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-300 mb-1">Cor Principal (Hex)</label>
+                                <div class="flex gap-2">
+                                    <input type="color" id="bioColorPicker" value="#00B4DB" class="w-10 h-10 rounded border-0 bg-transparent cursor-pointer" onchange="document.getElementById('bioColor').value = this.value.toUpperCase()">
+                                    <input type="text" id="bioColor" value="#00B4DB" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-sm text-white focus:outline-none font-mono uppercase">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Links Config -->
+                        <div class="space-y-4 bg-slate-900/50 p-4 rounded-xl border border-slate-800">
+                            <h4 class="text-xs font-bold text-slate-300 border-b border-slate-700 pb-2">Botões e Links</h4>
+                            
+                            <div class="space-y-2">
+                                <input type="text" id="bioLink1Title" placeholder="Título Botão 1 (Ex: Meu Site)" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-xs text-white">
+                                <input type="text" id="bioLink1Url" placeholder="URL Botão 1 (Ex: https://...)" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-xs text-white">
+                            </div>
+                            <div class="space-y-2 pt-2 border-t border-slate-800">
+                                <input type="text" id="bioLink2Title" placeholder="Título Botão 2 (Ex: WhatsApp)" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-xs text-white">
+                                <input type="text" id="bioLink2Url" placeholder="URL Botão 2" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-xs text-white">
+                            </div>
+                            <div class="space-y-2 pt-2 border-t border-slate-800">
+                                <input type="text" id="bioLink3Title" placeholder="Título Botão 3 (Ex: Instagram)" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-xs text-white">
+                                <input type="text" id="bioLink3Url" placeholder="URL Botão 3" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-xs text-white">
+                            </div>
+                        </div>
+                    </div>
+
+                    <button onclick="generateBiositeCode()" class="w-full mt-6 py-3.5 bg-gradient-to-r from-brand-yellow to-amber-500 hover:from-amber-400 hover:to-orange-500 text-brand-dark font-bold rounded-xl text-sm transition-all shadow-lg active:scale-95">
+                        Gerar Código HTML do Biosite
+                    </button>
+
+                    <!-- Biosite Output -->
+                    <div id="biositeOutput" class="hidden mt-6 space-y-3 pt-6 border-t border-slate-800 animate-fade-in">
+                        <div class="flex items-center justify-between">
+                            <label class="text-xs font-semibold text-emerald-400">✅ Arquivo `index.html` gerado com sucesso!</label>
+                            <button onclick="copyElementText('biositeHtmlCode')" class="px-3 py-1.5 bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-400 text-xs font-bold rounded border border-emerald-500/30 transition-colors">Copiar Código Completo</button>
+                        </div>
+                        <pre id="biositeHtmlCode" class="bg-slate-950 p-4 rounded-xl text-[10px] sm:text-xs text-emerald-300/80 code-font overflow-y-auto max-h-64 border border-slate-800 whitespace-pre-wrap break-all"></pre>
+                        <p class="text-[10px] text-slate-500 text-center">Cole este código em um bloco de notas, salve como <b>index.html</b> e hospede onde quiser.</p>
+                    </div>
+                </div>
+
+                <!-- TAB 3: WHATSAPP -->
                 <div id="tool-whatsapp" class="tool-content hidden bg-brand-card border border-brand-border rounded-2xl p-5 sm:p-8 shadow-2xl w-full">
                     <div class="mb-6">
-                        <h3 class="text-lg font-bold text-slate-100 mb-1">Gerador de Link Direto para WhatsApp</h3>
-                        <p class="text-xs text-slate-400">Crie um link curto com mensagem personalizada e tag HTML pronta.</p>
+                        <h3 class="text-lg font-bold text-slate-100">Link WhatsApp</h3>
+                        <p class="text-xs text-slate-400">Gere links diretos com mensagem.</p>
                     </div>
-                    
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
                         <div>
-                            <label class="block text-xs font-semibold text-slate-300 mb-1.5">Nº WhatsApp (Com DDD)</label>
-                            <input type="text" id="waPhone" placeholder="Ex: 5511999999999" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-sm text-slate-200 focus:outline-none focus:border-brand-blue focus:ring-1 focus:ring-brand-blue transition-all placeholder:text-slate-600">
+                            <label class="block text-xs font-semibold text-slate-300 mb-1">Nº WhatsApp (Com DDD)</label>
+                            <input type="text" id="waPhone" placeholder="Ex: 5511999999999" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-sm text-white focus:outline-none">
                         </div>
                         <div>
-                            <label class="block text-xs font-semibold text-slate-300 mb-1.5">Mensagem (Opcional)</label>
-                            <input type="text" id="waMessage" placeholder="Ex: Olá, vim pelo site!" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-sm text-slate-200 focus:outline-none focus:border-brand-blue focus:ring-1 focus:ring-brand-blue transition-all placeholder:text-slate-600">
+                            <label class="block text-xs font-semibold text-slate-300 mb-1">Mensagem (Opcional)</label>
+                            <input type="text" id="waMessage" placeholder="Olá!" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-sm text-white focus:outline-none">
                         </div>
                     </div>
+                    <button onclick="generateWhatsApp()" class="w-full py-3 bg-emerald-600 hover:bg-emerald-500 text-white font-bold rounded-lg text-sm transition-colors">Gerar Link</button>
                     
-                    <button onclick="generateWhatsAppLink()" class="w-full py-3.5 bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-400 hover:to-teal-500 text-white font-bold rounded-xl text-sm transition-all shadow-lg shadow-emerald-500/20 active:scale-[0.98]">
-                        Gerar Link e Botão HTML
-                    </button>
-                    
-                    <div id="waOutput" class="hidden mt-6 space-y-4 pt-6 border-t border-slate-800 animate-fade-in">
+                    <div id="waOutput" class="hidden mt-6 space-y-4 pt-4 border-t border-slate-800">
                         <div>
-                            <div class="flex items-center justify-between mb-1.5">
-                                <label class="text-xs font-semibold text-slate-400">URL Direta (`wa.me`)</label>
-                                <button onclick="copyInputText('waResultLink')" class="text-xs text-emerald-400 font-semibold hover:text-emerald-300 transition-colors">Copiar Link</button>
-                            </div>
-                            <input type="text" id="waResultLink" readonly class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2.5 text-xs text-emerald-300 font-mono">
+                            <div class="flex justify-between mb-1"><label class="text-xs text-slate-400">URL Direta</label><button onclick="copyElementValue('waResultLink')" class="text-xs text-emerald-400">Copiar</button></div>
+                            <input type="text" id="waResultLink" readonly class="w-full bg-slate-950 border border-slate-800 rounded px-3 py-2 text-xs text-emerald-300 font-mono">
                         </div>
                         <div>
-                            <div class="flex items-center justify-between mb-1.5">
-                                <label class="text-xs font-semibold text-slate-400">Código HTML (Botão Pronto)</label>
-                                <button onclick="copyCode('waResultHtml')" class="text-xs text-emerald-400 font-semibold hover:text-emerald-300 transition-colors">Copiar HTML</button>
-                            </div>
-                            <pre id="waResultHtml" class="bg-slate-950 p-3 rounded-lg text-xs sm:text-sm text-emerald-300/80 code-font overflow-x-auto border border-slate-800 whitespace-pre-wrap break-all"></pre>
+                            <div class="flex justify-between mb-1"><label class="text-xs text-slate-400">Tag HTML</label><button onclick="copyElementText('waResultHtml')" class="text-xs text-emerald-400">Copiar</button></div>
+                            <pre id="waResultHtml" class="bg-slate-950 p-2 rounded text-[10px] text-emerald-300 code-font whitespace-pre-wrap"></pre>
                         </div>
                     </div>
                 </div>
 
-                <!-- TAB 3: SOCIAL MEDIA ICONS GENERATOR -->
+                <!-- TAB 4: SOCIAL ICONS -->
                 <div id="tool-social" class="tool-content hidden bg-brand-card border border-brand-border rounded-2xl p-5 sm:p-8 shadow-2xl w-full">
-                    <div class="mb-6">
-                        <h3 class="text-lg font-bold text-slate-100 mb-1">Ícones Sociais em SVG Leve</h3>
-                        <p class="text-xs text-slate-400">Selecione a rede, defina a cor e pegue o código SVG para o seu biosite.</p>
+                    <div class="mb-4">
+                        <h3 class="text-lg font-bold text-slate-100">Ícones SVG</h3>
                     </div>
-                    
-                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3 mb-6">
-                        <button onclick="selectSocialIcon('instagram', this)" class="social-btn p-3 bg-slate-950 border border-brand-blue rounded-xl text-center font-semibold text-xs text-brand-blue transition-all">Instagram</button>
-                        <button onclick="selectSocialIcon('whatsapp', this)" class="social-btn p-3 bg-slate-900 border border-slate-800 rounded-xl text-center font-medium text-xs text-slate-400 hover:border-slate-600 transition-all">WhatsApp</button>
-                        <button onclick="selectSocialIcon('youtube', this)" class="social-btn p-3 bg-slate-900 border border-slate-800 rounded-xl text-center font-medium text-xs text-slate-400 hover:border-slate-600 transition-all">YouTube</button>
-                        <button onclick="selectSocialIcon('tiktok', this)" class="social-btn p-3 bg-slate-900 border border-slate-800 rounded-xl text-center font-medium text-xs text-slate-400 hover:border-slate-600 transition-all">TikTok</button>
+                    <div class="grid grid-cols-2 gap-2 mb-4">
+                        <button onclick="setSocial('instagram', this)" class="soc-btn p-2 border border-brand-blue bg-slate-950 text-brand-blue rounded text-xs font-bold">Instagram</button>
+                        <button onclick="setSocial('whatsapp', this)" class="soc-btn p-2 border border-slate-800 bg-slate-900 text-slate-400 rounded text-xs">WhatsApp</button>
+                        <button onclick="setSocial('youtube', this)" class="soc-btn p-2 border border-slate-800 bg-slate-900 text-slate-400 rounded text-xs">YouTube</button>
+                        <button onclick="setSocial('tiktok', this)" class="soc-btn p-2 border border-slate-800 bg-slate-900 text-slate-400 rounded text-xs">TikTok</button>
                     </div>
-                    
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-                        <div>
-                            <label class="block text-xs font-semibold text-slate-300 mb-1.5">Link de Destino</label>
-                            <input type="text" id="socialLinkUrl" placeholder="https://instagram.com/seu.perfil" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-sm text-slate-200 focus:outline-none focus:border-brand-blue focus:ring-1 focus:ring-brand-blue transition-all placeholder:text-slate-600">
-                        </div>
-                        <div>
-                            <label class="block text-xs font-semibold text-slate-300 mb-1.5">Cor do Ícone (Hex)</label>
-                            <div class="relative">
-                                <input type="text" id="socialColor" value="#00B4DB" class="w-full bg-slate-900 border border-slate-700 rounded-xl pl-12 pr-4 py-3 text-sm text-slate-200 focus:outline-none focus:border-brand-blue focus:ring-1 focus:ring-brand-blue transition-all font-mono">
-                                <input type="color" id="socialColorPicker" value="#00b4db" class="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded cursor-pointer border-0 p-0 bg-transparent" onchange="document.getElementById('socialColor').value = this.value.toUpperCase()">
-                            </div>
-                        </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+                        <input type="text" id="socUrl" placeholder="Link do Perfil" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-sm text-white focus:outline-none">
+                        <input type="color" id="socColor" value="#00B4DB" class="w-full h-[38px] bg-slate-900 border border-slate-700 rounded-lg cursor-pointer">
                     </div>
+                    <button onclick="generateSocial()" class="w-full py-3 bg-brand-blue hover:bg-cyan-500 text-brand-dark font-bold rounded-lg text-sm transition-colors">Gerar Código SVG</button>
                     
-                    <button onclick="generateSocialSnippet()" class="w-full py-3.5 bg-gradient-to-r from-brand-blue to-cyan-600 hover:from-cyan-400 hover:to-blue-500 text-brand-dark font-bold rounded-xl text-sm transition-all shadow-lg shadow-brand-blue/20 active:scale-[0.98]">
-                        Gerar Código do Ícone
-                    </button>
-                    
-                    <div id="socialOutput" class="hidden mt-6 space-y-4 pt-6 border-t border-slate-800 animate-fade-in">
-                        <div class="flex items-center justify-center p-6 bg-slate-950 rounded-xl border border-slate-800 shadow-inner" id="socialSvgPreview">
-                            <!-- Preview Injetado Via JS -->
-                        </div>
-                        <div>
-                            <div class="flex items-center justify-between mb-1.5">
-                                <label class="text-xs font-semibold text-slate-400">Código HTML + SVG Completo</label>
-                                <button onclick="copyCode('socialResultHtml')" class="text-xs text-brand-blue font-semibold hover:text-cyan-300 transition-colors">Copiar Código</button>
-                            </div>
-                            <pre id="socialResultHtml" class="bg-slate-950 p-3 sm:p-4 rounded-xl text-xs sm:text-sm text-cyan-300/80 code-font overflow-x-auto border border-slate-800 whitespace-pre-wrap break-all"></pre>
-                        </div>
+                    <div id="socOutput" class="hidden mt-6 pt-4 border-t border-slate-800">
+                        <div class="flex justify-between mb-1"><label class="text-xs text-slate-400">Código HTML + SVG</label><button onclick="copyElementText('socResultHtml')" class="text-xs text-brand-blue">Copiar</button></div>
+                        <pre id="socResultHtml" class="bg-slate-950 p-2 rounded text-[10px] text-cyan-300 code-font whitespace-pre-wrap"></pre>
                     </div>
                 </div>
 
-                <!-- TAB 4: URL CLEANER -->
+                <!-- TAB 5: URL CLEANER -->
                 <div id="tool-url" class="tool-content hidden bg-brand-card border border-brand-border rounded-2xl p-5 sm:p-8 shadow-2xl w-full">
-                    <div class="mb-6">
-                        <h3 class="text-lg font-bold text-slate-100 mb-1">Limpador Automático de URLs</h3>
-                        <p class="text-xs text-slate-400">Cole links grandes e rastreados (com `?utm_source`) e obtenha uma URL curta e limpa.</p>
-                    </div>
-                    
-                    <div class="mb-6">
-                        <label class="block text-xs font-semibold text-slate-300 mb-1.5">URL Suja / Original</label>
-                        <input type="text" id="rawUrlInput" placeholder="https://site.com/produto?utm_source=ig&fbclid=123..." class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-sm text-slate-200 focus:outline-none focus:border-brand-blue focus:ring-1 focus:ring-brand-blue transition-all placeholder:text-slate-600">
-                    </div>
-                    
-                    <button onclick="cleanUrl()" class="w-full py-3.5 bg-gradient-to-r from-brand-yellow to-amber-600 hover:from-amber-400 hover:to-orange-500 text-brand-dark font-bold rounded-xl text-sm transition-all shadow-lg shadow-brand-yellow/20 active:scale-[0.98]">
-                        Limpar URL Agora
-                    </button>
-                    
-                    <div id="urlOutput" class="hidden mt-6 space-y-2 pt-6 border-t border-slate-800 animate-fade-in">
-                        <div class="flex items-center justify-between mb-1.5">
-                            <label class="text-xs font-semibold text-slate-400">Sua URL Limpa</label>
-                            <button onclick="copyInputText('cleanUrlResult')" class="text-xs text-brand-yellow font-semibold hover:text-amber-300 transition-colors">Copiar Link Limpo</button>
-                        </div>
-                        <input type="text" id="cleanUrlResult" readonly class="w-full bg-slate-950 border border-slate-800 rounded-lg px-4 py-3 text-sm sm:text-base text-yellow-400 font-mono focus:outline-none">
+                    <h3 class="text-lg font-bold text-slate-100 mb-4">Limpador de URL</h3>
+                    <input type="text" id="rawUrl" placeholder="Cole link com ?utm_source=..." class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-3 text-sm text-white mb-4">
+                    <button onclick="cleanUrl()" class="w-full py-3 bg-slate-700 hover:bg-slate-600 text-white font-bold rounded-lg text-sm">Limpar Link</button>
+                    <div id="urlOutput" class="hidden mt-6 pt-4 border-t border-slate-800">
+                        <div class="flex justify-between mb-1"><label class="text-xs text-slate-400">URL Limpa</label><button onclick="copyElementValue('cleanUrl')" class="text-xs text-white">Copiar</button></div>
+                        <input type="text" id="cleanUrl" readonly class="w-full bg-slate-950 border border-slate-800 rounded px-3 py-2 text-sm text-white font-mono">
                     </div>
                 </div>
 
-            </div>
-        </section>
-
-        <!-- SEO Educational Section -->
-        <section class="py-12 sm:py-16 bg-slate-900/40 border-y border-brand-border px-4 sm:px-6 w-full">
-            <div class="max-w-4xl mx-auto space-y-6 sm:space-y-8">
-                <div class="text-center sm:text-left space-y-3">
-                    <h2 class="text-xl sm:text-2xl font-bold text-slate-100">Por que usar o LogoEmCódigo?</h2>
-                    <p class="text-sm text-slate-400 leading-relaxed max-w-3xl">
-                        Criadores de conteúdo e negócios enfrentam problemas ao construir biosites em ferramentas como Linktree, Carrd ou Notion. Hospedar imagens e lidar com tags HTML não deveria ser complicado. Nós resolvemos isso tudo direto no seu navegador.
-                    </p>
-                </div>
-                
-                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
-                    <div class="p-5 bg-brand-card rounded-2xl border border-brand-border hover:border-slate-600 transition-colors">
-                        <div class="w-10 h-10 rounded-lg bg-brand-blue/10 flex items-center justify-center text-brand-blue mb-4">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
-                        </div>
-                        <h3 class="font-bold text-slate-200 mb-2 text-sm">Ultra Rápido (Base64)</h3>
-                        <p class="text-xs text-slate-400 leading-relaxed">Não precisa hospedar imagens na nuvem. Geramos um código Base64 que carrega a logo direto no HTML, sem depender de links externos caindo.</p>
-                    </div>
-                    <div class="p-5 bg-brand-card rounded-2xl border border-brand-border hover:border-slate-600 transition-colors">
-                        <div class="w-10 h-10 rounded-lg bg-emerald-500/10 flex items-center justify-center text-emerald-500 mb-4">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
-                        </div>
-                        <h3 class="font-bold text-slate-200 mb-2 text-sm">100% Seguro & Privado</h3>
-                        <p class="text-xs text-slate-400 leading-relaxed">Suas imagens nunca são enviadas para os nossos servidores. Todo o processamento de conversão é feito de forma segura direto no seu navegador.</p>
-                    </div>
-                    <div class="p-5 bg-brand-card rounded-2xl border border-brand-border hover:border-slate-600 transition-colors">
-                        <div class="w-10 h-10 rounded-lg bg-brand-yellow/10 flex items-center justify-center text-brand-yellow mb-4">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"></path></svg>
-                        </div>
-                        <h3 class="font-bold text-slate-200 mb-2 text-sm">SEO Friendly</h3>
-                        <p class="text-xs text-slate-400 leading-relaxed">Códigos gerados respeitando as boas práticas do Google, com alt text configurados e URLs limpas, ajudando seu site a ranquear melhor nas buscas.</p>
-                    </div>
-                </div>
             </div>
         </section>
     </main>
 
-    <!-- Global Toast Notification -->
-    <div id="toast" class="fixed bottom-6 right-6 lg:bottom-10 lg:right-10 bg-slate-800 text-white px-5 py-3 rounded-xl text-sm font-semibold shadow-2xl border border-slate-700 transform translate-y-24 opacity-0 transition-all duration-300 z-50 flex items-center gap-3 pointer-events-none">
-        <div id="toastIcon" class="w-6 h-6 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center">
+    <!-- Global Toast UI -->
+    <div id="toast" class="fixed bottom-6 right-6 bg-slate-800 border border-slate-700 text-white px-4 py-3 rounded-xl text-sm font-semibold shadow-2xl transform translate-y-24 opacity-0 transition-all duration-300 z-50 flex items-center gap-3">
+        <div class="w-6 h-6 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
         </div>
-        <span id="toastMessage">Sucesso!</span>
+        <span id="toastMsg">Copiado!</span>
     </div>
 
-    <footer class="border-t border-brand-border bg-slate-950 py-10 w-full text-center">
-        <div class="max-w-7xl mx-auto px-4 flex flex-col items-center gap-4">
-            <div class="opacity-50 hover:opacity-100 transition-opacity">
-                <!-- LOGO FOOTER -->
-                <img src="logo.png" alt="LogoEmCodigo Footer" class="w-8 h-8 rounded object-cover" onerror="this.style.display='none'">
-            </div>
-            <p class="text-xs text-slate-500 font-medium">© 2026 LogoEmCodigo.com.br — Portal de Utilidades.</p>
-            <p class="text-[10px] text-slate-600">Construído para rodar no navegador. Nenhuma imagem é armazenada.</p>
-        </div>
-    </footer>
-
     <script>
-        // --- 1. CORE UTILITIES ---
+        // --- 1. GLOBAL UTILITIES (BULLETPROOF) ---
         
-        // Custom Toast Notification System
-        function showToast(message, type = 'success') {
+        function showToast(message) {
             const toast = document.getElementById('toast');
-            const toastMsg = document.getElementById('toastMessage');
-            const toastIcon = document.getElementById('toastIcon');
-            
-            toastMsg.textContent = message;
-            
-            if(type === 'error') {
-                toastIcon.className = 'w-6 h-6 rounded-full bg-rose-500/20 text-rose-400 flex items-center justify-center';
-                toastIcon.innerHTML = '<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M6 18L18 6M6 6l12 12"></path></svg>';
-            } else {
-                toastIcon.className = 'w-6 h-6 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center';
-                toastIcon.innerHTML = '<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>';
-            }
-            
+            document.getElementById('toastMsg').textContent = message;
             toast.classList.remove('translate-y-24', 'opacity-0');
             toast.classList.add('translate-y-0', 'opacity-100');
-            
             setTimeout(() => {
                 toast.classList.remove('translate-y-0', 'opacity-100');
                 toast.classList.add('translate-y-24', 'opacity-0');
             }, 3000);
         }
 
-        // Robust Copy to Clipboard with fallback
-        async function copyToClipboard(text) {
+        // Extremely robust copy function using fallback for non-https/iframe environments
+        function fallbackCopyTextToClipboard(text) {
+            const textArea = document.createElement("textarea");
+            textArea.value = text;
+            textArea.style.position = "fixed";
+            textArea.style.top = "-999999px";
+            textArea.style.left = "-999999px";
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
             try {
-                if (navigator.clipboard && window.isSecureContext) {
-                    await navigator.clipboard.writeText(text);
-                    return true;
-                } else {
-                    // Fallback for older browsers or non-secure contexts
-                    const textArea = document.createElement("textarea");
-                    textArea.value = text;
-                    textArea.style.position = "fixed";
-                    textArea.style.left = "-999999px";
-                    textArea.style.top = "-999999px";
-                    document.body.appendChild(textArea);
-                    textArea.focus();
-                    textArea.select();
-                    document.execCommand('copy');
-                    textArea.remove();
-                    return true;
-                }
-            } catch (error) {
-                console.error('Copy failed', error);
-                return false;
+                document.execCommand('copy');
+                showToast("Copiado com sucesso!");
+            } catch (err) {
+                alert("Erro ao copiar. Selecione o texto e copie manualmente.");
             }
+            document.body.removeChild(textArea);
         }
 
-        async function copyCode(elementId) {
-            const el = document.getElementById(elementId);
-            if(!el) return;
-            const success = await copyToClipboard(el.textContent);
-            if(success) showToast('Código copiado para a área de transferência!');
-            else showToast('Erro ao copiar código.', 'error');
+        function copyText(text) {
+            if (!navigator.clipboard || !window.isSecureContext) {
+                fallbackCopyTextToClipboard(text);
+                return;
+            }
+            navigator.clipboard.writeText(text).then(() => {
+                showToast("Copiado com sucesso!");
+            }).catch(() => {
+                fallbackCopyTextToClipboard(text); // Fallback on failure
+            });
         }
 
-        async function copyInputText(elementId) {
-            const el = document.getElementById(elementId);
-            if(!el) return;
-            const success = await copyToClipboard(el.value);
-            if(success) showToast('Copiado com sucesso!');
-            else showToast('Erro ao copiar.', 'error');
+        function copyElementText(id) {
+            const el = document.getElementById(id);
+            if(el) copyText(el.innerText || el.textContent);
+        }
+
+        function copyElementValue(id) {
+            const el = document.getElementById(id);
+            if(el) copyText(el.value);
         }
 
         // Tab Switcher
-        function switchTab(tabName) {
-            const tabs = ['logo', 'whatsapp', 'social', 'url'];
-            
+        function switchTab(tabId) {
+            const tabs = ['logo', 'biosite', 'whatsapp', 'social', 'url'];
             tabs.forEach(t => {
                 const content = document.getElementById(`tool-${t}`);
                 if(content) content.classList.add('hidden');
                 
                 const navBtn = document.getElementById(`nav-${t}`);
-                if(navBtn) navBtn.className = 'hover:text-brand-blue px-2 py-1 whitespace-nowrap transition-colors text-slate-300';
+                if(navBtn) navBtn.className = 'hover:text-brand-blue px-2 whitespace-nowrap transition-colors text-slate-300';
                 
-                const tabBtn = document.getElementById(`btn-tab-${t}`);
-                if(tabBtn) tabBtn.className = 'px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-brand-card border border-brand-border text-slate-300 hover:bg-slate-800 transition-all';
+                const mobileBtn = document.getElementById(`btn-tab-${t}`);
+                if(mobileBtn) mobileBtn.className = 'px-3 py-1.5 rounded-lg text-xs font-semibold bg-brand-card border border-brand-border text-slate-300 transition-all';
             });
 
-            document.getElementById(`tool-${tabName}`).classList.remove('hidden');
+            document.getElementById(`tool-${tabId}`).classList.remove('hidden');
             
-            const activeNav = document.getElementById(`nav-${tabName}`);
-            if(activeNav) activeNav.className = 'text-brand-blue font-semibold px-2 py-1 whitespace-nowrap transition-colors';
+            const aNav = document.getElementById(`nav-${tabId}`);
+            if(aNav) aNav.classList.add('text-brand-blue');
             
-            const activeTabBtn = document.getElementById(`btn-tab-${tabName}`);
-            if(activeTabBtn) activeTabBtn.className = 'px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-brand-blue text-brand-dark transition-all shadow-lg shadow-brand-blue/20';
+            const aMob = document.getElementById(`btn-tab-${tabId}`);
+            if(aMob) {
+                aMob.className = 'px-3 py-1.5 rounded-lg text-xs font-semibold bg-brand-blue text-brand-dark transition-all';
+                if(tabId === 'biosite') aMob.className = 'px-3 py-1.5 rounded-lg text-xs font-semibold bg-brand-yellow text-brand-dark transition-all';
+            }
         }
 
+        // --- 2. LOGO CONVERTER LOGIC (Guaranteed execution on load) ---
+        document.addEventListener('DOMContentLoaded', () => {
+            const dropzone = document.getElementById('dropzone');
+            const fileInput = document.getElementById('fileInput');
 
-        // --- 2. LOGO CONVERTER LOGIC ---
-        const dropzone = document.getElementById('dropzone');
-        const fileInput = document.getElementById('fileInput');
+            if(dropzone && fileInput) {
+                // Click to open file dialog
+                dropzone.addEventListener('click', () => fileInput.click());
+                
+                // Drag and Drop Events
+                dropzone.addEventListener('dragover', (e) => {
+                    e.preventDefault();
+                    dropzone.classList.add('border-brand-blue', 'bg-slate-800');
+                });
+                dropzone.addEventListener('dragleave', (e) => {
+                    e.preventDefault();
+                    dropzone.classList.remove('border-brand-blue', 'bg-slate-800');
+                });
+                dropzone.addEventListener('drop', (e) => {
+                    e.preventDefault();
+                    dropzone.classList.remove('border-brand-blue', 'bg-slate-800');
+                    if(e.dataTransfer.files && e.dataTransfer.files.length > 0) {
+                        processLogoFile(e.dataTransfer.files[0]);
+                    }
+                });
 
-        if(dropzone && fileInput) {
-            dropzone.addEventListener('click', () => fileInput.click());
-            
-            dropzone.addEventListener('dragover', (e) => {
-                e.preventDefault();
-                dropzone.classList.add('border-brand-blue', 'bg-slate-800');
-            });
-            
-            dropzone.addEventListener('dragleave', (e) => {
-                e.preventDefault();
-                dropzone.classList.remove('border-brand-blue', 'bg-slate-800');
-            });
-            
-            dropzone.addEventListener('drop', (e) => {
-                e.preventDefault();
-                dropzone.classList.remove('border-brand-blue', 'bg-slate-800');
-                if(e.dataTransfer.files && e.dataTransfer.files.length > 0) {
-                    processImage(e.dataTransfer.files[0]);
-                }
-            });
+                // File Input Change Event
+                fileInput.addEventListener('change', (e) => {
+                    if(e.target.files && e.target.files.length > 0) {
+                        processLogoFile(e.target.files[0]);
+                    }
+                });
+            }
+        });
 
-            fileInput.addEventListener('change', (e) => {
-                if(e.target.files && e.target.files.length > 0) {
-                    processImage(e.target.files[0]);
-                }
-            });
-        }
-
-        function processImage(file) {
-            // Validate file type
+        function processLogoFile(file) {
             if (!file.type.startsWith('image/')) {
-                showToast('Por favor, envie um arquivo de imagem válido.', 'error');
+                alert('Erro: Envie um arquivo de imagem (PNG, JPG, SVG).');
                 return;
             }
-            
-            // Validate size (5MB limit)
             if (file.size > 5 * 1024 * 1024) {
-                showToast('O arquivo excede o limite de 5MB.', 'error');
+                alert('Erro: Arquivo maior que 5MB.');
                 return;
             }
 
             const reader = new FileReader();
+            
+            // Essential logic: when file reading is done, execute this
             reader.onload = function(e) {
                 const base64String = e.target.result;
+                const fileName = file.name.replace(/\.[^/.]+$/, "");
+                const sizeKb = (file.size / 1024).toFixed(1);
                 
-                // Update UI elements
-                document.getElementById('imagePreview').src = base64String;
-                document.getElementById('imageMeta').textContent = `${file.name} - ${(file.size / 1024).toFixed(1)} KB`;
+                // Update Image Preview
+                const imgPreview = document.getElementById('imagePreview');
+                imgPreview.src = base64String;
+                document.getElementById('imageMeta').textContent = `${file.name} (${sizeKb} KB)`;
                 
-                // Set Code Blocks
-                const extension = file.name.split('.').pop().toLowerCase();
-                const altName = file.name.replace(/\.[^/.]+$/, ""); // Remove extension for alt
+                // Generate HTML Tag Code
+                const htmlTag = `<img \n  src="${base64String}" \n  alt="Logo ${fileName}" \n  style="width:100%; max-width:250px; height:auto; object-fit:contain;" \n/>`;
                 
-                const htmlTemplate = `<img \n  src="${base64String}" \n  alt="Logo ${altName}" \n  style="width:100%; max-width:200px; height:auto; object-fit:contain;" \n/>`;
-                
-                document.getElementById('htmlCode').textContent = htmlTemplate;
+                // Safely update DOM text
+                document.getElementById('htmlCode').textContent = htmlTag;
                 document.getElementById('base64Code').textContent = base64String;
                 
-                // Simulate Color Extraction (Mocked for speed, normally requires Canvas pixel data reading which is complex for SVG)
-                extractColorsMock(base64String);
-
-                // Toggle visibility
+                // Toggle sections
                 document.getElementById('dropzone').classList.add('hidden');
                 document.getElementById('outputSection').classList.remove('hidden');
                 
-                showToast('Logo processada com sucesso!');
+                // Attempt to extract real colors via canvas heuristic
+                extractDominantColors(imgPreview);
+                
+                showToast('Logo convertida! Códigos gerados abaixo.');
             };
             
+            // Trigger the reading process
             reader.readAsDataURL(file);
         }
 
-        function extractColorsMock(src) {
-            // In a real advanced app we would draw to canvas and count pixels.
-            // For instantaneous utility, we provide strong layout-friendly default hexes
-            // based on the brand, plus pure black and white.
-            const colors = ['#FFFFFF', '#0B0F19', '#00B4DB', '#FFB800', '#64748B'];
+        // Real Pixel sampling logic for color extraction
+        function extractDominantColors(imgEl) {
             const container = document.getElementById('colorPalette');
             container.innerHTML = '';
             
-            colors.forEach(hex => {
+            imgEl.onload = function() {
+                try {
+                    const canvas = document.createElement('canvas');
+                    const ctx = canvas.getContext('2d');
+                    canvas.width = imgEl.naturalWidth || 50;
+                    canvas.height = imgEl.naturalHeight || 50;
+                    ctx.drawImage(imgEl, 0, 0);
+                    
+                    // Simple heuristic: sample center, top-left-ish, bottom-right-ish
+                    const samples = [
+                        {x: canvas.width/2, y: canvas.height/2},
+                        {x: canvas.width * 0.25, y: canvas.height * 0.25},
+                        {x: canvas.width * 0.75, y: canvas.height * 0.75}
+                    ];
+                    
+                    const hexColors = new Set();
+                    samples.forEach(pos => {
+                        const pixel = ctx.getImageData(pos.x, pos.y, 1, 1).data;
+                        if(pixel[3] > 0) { // Check opacity/alpha
+                            const hex = "#" + ("000000" + rgbToHex(pixel[0], pixel[1], pixel[2])).slice(-6).toUpperCase();
+                            hexColors.add(hex);
+                        }
+                    });
+                    
+                    // If image is mostly transparent or failed, provide defaults based on branding
+                    if(hexColors.size === 0) {
+                        hexColors.add('#00B4DB'); hexColors.add('#FFFFFF'); hexColors.add('#0B0F19');
+                    }
+                    
+                    renderColors(Array.from(hexColors));
+                } catch (err) {
+                    // Fallback for CORS or SVG drawing issues
+                    renderColors(['#00B4DB', '#FFB800', '#FFFFFF', '#000000']);
+                }
+            };
+        }
+
+        function rgbToHex(r, g, b) { return (r << 16) | (g << 8) | b; }
+
+        function renderColors(colorsArray) {
+            const container = document.getElementById('colorPalette');
+            colorsArray.forEach(hex => {
                 const btn = document.createElement('button');
-                btn.className = 'flex items-center gap-1.5 px-2.5 py-1 bg-slate-900 border border-slate-700 rounded-lg text-[10px] font-mono text-slate-300 hover:border-slate-400 hover:bg-slate-800 transition-colors cursor-pointer';
-                btn.innerHTML = `<span class="w-2.5 h-2.5 rounded-full border border-slate-600" style="background-color: ${hex};"></span> ${hex}`;
-                btn.onclick = async () => {
-                    await copyToClipboard(hex);
-                    showToast(`Cor ${hex} copiada!`);
-                };
+                btn.className = 'flex items-center gap-1 px-2 py-1 bg-slate-900 border border-slate-700 rounded text-[10px] font-mono text-slate-300 hover:border-slate-400 transition-colors cursor-pointer shadow-sm';
+                btn.innerHTML = `<span class="w-3 h-3 rounded-sm" style="background-color: ${hex}; border: 1px solid #333;"></span> ${hex}`;
+                btn.onclick = () => copyText(hex);
                 container.appendChild(btn);
             });
         }
@@ -551,93 +512,161 @@
             document.getElementById('dropzone').classList.remove('hidden');
         }
 
-
-        // --- 3. WHATSAPP LINK GENERATOR ---
-        function generateWhatsAppLink() {
-            let phone = document.getElementById('waPhone').value.trim();
-            const msg = document.getElementById('waMessage').value.trim();
+        // --- 3. BIOSITE GENERATOR LOGIC ---
+        function generateBiositeCode() {
+            const name = document.getElementById('bioName').value || 'Meu Perfil';
+            const desc = document.getElementById('bioDesc').value || 'Bem-vindo ao meu biosite!';
+            const pic = document.getElementById('bioPic').value || 'https://placehold.co/150x150/1E293B/FFFFFF?text=FOTO';
+            const color = document.getElementById('bioColor').value || '#00B4DB';
             
-            // Clean phone number (remove spaces, dashes, parentheses)
-            phone = phone.replace(/[^0-9]/g, '');
-            
-            if(!phone || phone.length < 10) {
-                showToast('Informe um número válido (ex: 5511999999999)', 'error');
-                return;
+            const links = [];
+            for(let i=1; i<=3; i++) {
+                const title = document.getElementById(`bioLink${i}Title`).value;
+                const url = document.getElementById(`bioLink${i}Url`).value;
+                if(title && url) {
+                    links.push({title, url});
+                }
             }
-            
-            const link = `https://wa.me/${phone}${msg ? '?text=' + encodeURIComponent(msg) : ''}`;
-            const htmlBtn = `<a href="${link}" target="_blank" style="display:inline-block; padding:12px 24px; background-color:#25D366; color:#ffffff; text-decoration:none; font-family:sans-serif; font-weight:bold; border-radius:8px; box-shadow:0 4px 6px rgba(37,211,102,0.3);">Falar no WhatsApp</a>`;
-            
-            document.getElementById('waResultLink').value = link;
-            document.getElementById('waResultHtml').textContent = htmlBtn;
-            document.getElementById('waOutput').classList.remove('hidden');
-            
-            showToast('Link do WhatsApp gerado!');
+
+            // Fallback link if empty
+            if(links.length === 0) {
+                links.push({title: 'Visite Meu Site', url: 'https://seusite.com'});
+            }
+
+            let linksHtml = '';
+            links.forEach(l => {
+                linksHtml += `\n        <a href="${l.url}" class="link-btn">${l.title}</a>`;
+            });
+
+            // The complete standalone HTML string
+            const template = `<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>${name} | Links</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #0B0F19; /* Fundo escuro premium */
+            color: #FFFFFF;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+        .container {
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+        .profile-pic {
+            width: 100px; height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid ${color};
+            margin-bottom: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+        .name { font-size: 22px; font-weight: 700; margin-bottom: 5px; }
+        .desc { font-size: 14px; color: #94A3B8; margin-bottom: 30px; }
+        .links-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .link-btn {
+            display: block;
+            width: 100%;
+            padding: 16px;
+            background-color: #1E293B;
+            color: #F8FAFC;
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 12px;
+            border: 1px solid #334155;
+            transition: all 0.2s ease;
+        }
+        .link-btn:hover {
+            background-color: ${color};
+            color: #000000;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px ${color}40;
+        }
+        .footer {
+            margin-top: 40px;
+            font-size: 12px;
+            color: #475569;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="${pic}" alt="${name}" class="profile-pic">
+        <h1 class="name">${name}</h1>
+        <p class="desc">${desc}</p>
+        
+        <div class="links-container">${linksHtml}
+        </div>
+        
+        <div class="footer">Criado usando LogoEmCodigo.com.br</div>
+    </div>
+</body>
+</html>`;
+
+            document.getElementById('biositeHtmlCode').textContent = template;
+            document.getElementById('biositeOutput').classList.remove('hidden');
+            showToast('HTML do Biosite gerado com sucesso!');
         }
 
 
-        // --- 4. SOCIAL ICONS GENERATOR ---
-        let currentSocial = 'instagram';
-        
-        const svgIcons = {
+        // --- 4. SECUNDARY TOOLS LOGIC ---
+        function generateWhatsApp() {
+            let phone = document.getElementById('waPhone').value.replace(/\D/g, '');
+            if(!phone) { alert("Insira o número."); return; }
+            let msg = encodeURIComponent(document.getElementById('waMessage').value);
+            let url = `https://wa.me/${phone}${msg ? '?text='+msg : ''}`;
+            document.getElementById('waResultLink').value = url;
+            document.getElementById('waResultHtml').textContent = `<a href="${url}" target="_blank" style="background:#25D366;color:#fff;padding:10px 20px;border-radius:8px;text-decoration:none;font-weight:bold;">WhatsApp</a>`;
+            document.getElementById('waOutput').classList.remove('hidden');
+        }
+
+        let currSoc = 'instagram';
+        const svgs = {
             instagram: '<svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>',
             whatsapp: '<svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.148-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.124-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>',
             youtube: '<svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>',
             tiktok: '<svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.5.18-1.92 1.12-3.72 2.5-5.02 1.6-1.51 3.82-2.31 6.04-2.22.27 0 .54.03.81.05v4.05c-.32-.08-.65-.13-.98-.13-1.11-.02-2.18.41-2.96 1.21-.77.79-1.17 1.88-1.07 2.99.1 1.25 1.05 2.3 2.3 2.5 1.14.2 2.32-.11 3.14-.84.71-.62 1.14-1.52 1.15-2.46V.02z"/></svg>'
         };
 
-        function selectSocialIcon(social, btnElement) {
-            currentSocial = social;
-            
-            // Reset all buttons
-            document.querySelectorAll('.social-btn').forEach(btn => {
-                btn.className = 'social-btn p-3 bg-slate-900 border border-slate-800 rounded-xl text-center font-medium text-xs text-slate-400 hover:border-slate-600 transition-all';
+        function setSocial(soc, btn) {
+            currSoc = soc;
+            document.querySelectorAll('.soc-btn').forEach(b => {
+                b.className = 'soc-btn p-2 border border-slate-800 bg-slate-900 text-slate-400 rounded text-xs';
             });
-            
-            // Activate selected
-            btnElement.className = 'social-btn p-3 bg-slate-950 border border-brand-blue rounded-xl text-center font-semibold text-xs text-brand-blue transition-all shadow-[0_0_10px_rgba(0,180,219,0.2)]';
+            btn.className = 'soc-btn p-2 border border-brand-blue bg-slate-950 text-brand-blue rounded text-xs font-bold';
         }
 
-        function generateSocialSnippet() {
-            const linkUrl = document.getElementById('socialLinkUrl').value.trim() || '#';
-            const color = document.getElementById('socialColor').value.trim() || '#00B4DB';
-            const svgRaw = svgIcons[currentSocial];
-
-            const htmlSnippet = `<a href="${linkUrl}" target="_blank" style="color: ${color}; display: inline-block; padding: 8px;">\n  ${svgRaw}\n</a>`;
-            
-            document.getElementById('socialSvgPreview').innerHTML = `<div style="color: ${color}; transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">${svgRaw}</div>`;
-            document.getElementById('socialResultHtml').textContent = htmlSnippet;
-            document.getElementById('socialOutput').classList.remove('hidden');
-            
-            showToast('Ícone gerado e formatado!');
+        function generateSocial() {
+            let url = document.getElementById('socUrl').value || '#';
+            let color = document.getElementById('socColor').value;
+            let svg = svgs[currSoc];
+            let html = `<a href="${url}" target="_blank" style="color:${color};display:inline-block;padding:8px;">\n  ${svg}\n</a>`;
+            document.getElementById('socResultHtml').textContent = html;
+            document.getElementById('socOutput').classList.remove('hidden');
         }
 
-
-        // --- 5. URL CLEANER LOGIC ---
         function cleanUrl() {
-            const raw = document.getElementById('rawUrlInput').value.trim();
-            if(!raw) {
-                showToast('Insira uma URL para limpar!', 'error');
-                return;
-            }
+            let raw = document.getElementById('rawUrl').value;
             try {
-                // Prepend http if missing to prevent URL parsing errors
-                const urlToParse = /^https?:\/\//i.test(raw) ? raw : 'https://' + raw;
-                const parsed = new URL(urlToParse);
-                
-                // Remove UTM and common tracking params
-                const paramsToRemove = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content', 'ref', 'fbclid', 'gclid', '_gl'];
-                paramsToRemove.forEach(p => parsed.searchParams.delete(p));
-                
-                const cleanResult = parsed.toString();
-                document.getElementById('cleanUrlResult').value = cleanResult;
+                let url = new URL(raw);
+                ['utm_source','utm_medium','utm_campaign','utm_term','ref','fbclid'].forEach(p => url.searchParams.delete(p));
+                document.getElementById('cleanUrl').value = url.toString();
                 document.getElementById('urlOutput').classList.remove('hidden');
-                
-                showToast('URL limpa com sucesso!');
-            } catch(e) {
-                showToast('URL inválida. Verifique o formato.', 'error');
-            }
+            } catch(e) { alert("Link inválido."); }
         }
     </script>
 </body>
 </html>
+```
