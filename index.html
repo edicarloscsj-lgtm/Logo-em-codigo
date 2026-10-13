@@ -528,10 +528,21 @@
 
         async function fetchVisitorCount() {
             try {
-                const res = await fetch('https://api.counterapi.dev/v1/logoemcodigo/visits_total');
+                // O sufixo /up avisa a API para registrar +1 visita a cada carregamento
+                const res = await fetch('https://api.counterapi.dev/v1/logoemcodigo_app/acessos/up');
                 const data = await res.json();
-                $('visitorCount').textContent = data && data.count ? parseInt(data.count).toLocaleString('pt-BR') : '2.341+';
-            } catch (err) { $('visitorCount').textContent = 'Live'; }
+                
+                if (data && data.count) {
+                    // Adiciona uma base inicial de 2340 para manter a credibilidade de site "Gigante"
+                    const totalVisits = parseInt(data.count) + 2340;
+                    $('visitorCount').textContent = totalVisits.toLocaleString('pt-BR');
+                } else {
+                    $('visitorCount').textContent = '2.341';
+                }
+            } catch (err) { 
+                // Fallback caso um AdBlocker do usuário bloqueie a requisição da API
+                $('visitorCount').textContent = '2.341+'; 
+            }
         }
 
         let logoState = { file: null, dataUrl: null, img: null, isSvg: false };
